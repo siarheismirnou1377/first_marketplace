@@ -12,6 +12,6 @@ urlpatterns = [
     # Страница всех товаров
     path('products/', views.products, name='products'),
     # Страница товара
-    path('/<int:product_id>/', views.product, name='product'),
+    path('<int:product_id>/', views.product, name='product'),
 ]
  

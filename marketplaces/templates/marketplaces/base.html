@@ -2,6 +2,13 @@
     <a href= "{% url 'marketplaces:index' %}">Marketplace</a>
     <a href= "{% url 'marketplaces:categories' %}">All categories</a>
     <a href= "{% url 'marketplaces:products' %}">All products</a>
+    {% if user.is_authenticated %}
+        Hello, {{ user.username }}.
+        <a href="{% url 'users:logout' %}">Log out</a>
+    {% else %}
+        <a href="{% url 'users:login' %}">Log in</a> -
+        <a href="{% url 'users:register' %}">Register</a>
+    {% endif %}
     
 </p>
 {% block content %}{% endblock content %}
