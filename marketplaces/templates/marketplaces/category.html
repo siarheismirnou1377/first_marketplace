@@ -3,12 +3,11 @@
 {% block content %}
     <p>Category: {{ category }}</p>
 
-    <p>Products:</p>
+    <p>Product:</p>
     <ul>
     {% for product in products %}
         <li>
-            <p>{{ product.date_added|date:'M d, H:i' }}</p>
-            <p>{{ product.name|linebreaks }}</p>
+            <a href="{% url 'marketplaces:product' product.id %}">{{ product.name }}</a>
         </li>
     {% empty %}
         <li>There are no products.</li>
