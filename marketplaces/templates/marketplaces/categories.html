@@ -1,0 +1,15 @@
+{% extends 'marketplaces/base.html' %}
+
+{% block content %}
+
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'marketplaces:category' category.id %}">{{ category }}</a>
+            </li>
+        {% empty %}
+            <li>There are no category.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}

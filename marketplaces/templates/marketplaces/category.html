@@ -1,0 +1,18 @@
+{% extends 'marketplaces/base.html' %}
+
+{% block content %}
+    <p>Category: {{ category }}</p>
+
+    <p>Products:</p>
+    <ul>
+    {% for product in products %}
+        <li>
+            <p>{{ product.date_added|date:'M d, H:i' }}</p>
+            <p>{{ product.name|linebreaks }}</p>
+        </li>
+    {% empty %}
+        <li>There are no products.</li>
+    {% endfor %}
+    </ul>
+
+{% endblock content %}
