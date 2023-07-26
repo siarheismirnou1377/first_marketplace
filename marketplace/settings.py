@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'marketplaces',
     'users',
     'cart',
+    'orders',
     # django apps
     'django.contrib.admin',
     'django.contrib.auth',
