@@ -5,6 +5,7 @@ from cart.cart import Cart
 
 
 def order_create(request):
+    """Создаёт заказ и очищает корзину"""
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)

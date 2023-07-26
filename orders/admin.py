@@ -3,11 +3,13 @@ from .models import Order, OrderItem
 
 
 class OrderItemInline(admin.TabularInline):
+    """Отображает заказанные продукты"""
     model = OrderItem
     raw_id_fields = ['product']
 
 
 class OrderAdmin(admin.ModelAdmin):
+    """Отображает информацию по заказу"""
     list_display = ['id', 'first_name', 'last_name', 'email',
                     'address', 'postal_code', 'city', 'paid',
                     'created', 'updated']
