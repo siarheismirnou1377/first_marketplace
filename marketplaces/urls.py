@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from cart import views as views_cart
 
 app_name = "marketplaces"
 urlpatterns = [
@@ -13,5 +14,7 @@ urlpatterns = [
     path('products/', views.products, name='products'),
     # Страница товара
     path('<int:product_id>/', views.product, name='product'),
+    # Страница корзины
+    path('cart/', views_cart.cart_detail, name='cart_detail'),
 ]
  
