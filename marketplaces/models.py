@@ -1,6 +1,7 @@
 from django.db import models
 
 class Category(models.Model):
+    """Класс категорий товаров"""
     name = models.CharField(max_length=50)
     date_added = models.DateTimeField(auto_now_add=True)
     class Meta:
