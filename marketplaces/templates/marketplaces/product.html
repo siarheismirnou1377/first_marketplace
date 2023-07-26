@@ -4,4 +4,9 @@
     <p>Product: {{ product.name }}</p>
     <p>Price: {{ product.price }}</p>
     <p>Date added: {{ product.date_added|date:'M d, H:i' }}</p>
+    <form action="{% url "cart:cart_add" product.id %}" method="post">
+        {{ cart_product_form }}
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+    </form>
 {% endblock content %}

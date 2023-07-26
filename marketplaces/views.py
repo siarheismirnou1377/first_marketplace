@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from .models import Category, Product
+from cart.forms import CartAddProductForm
+
 
 def index(request):
     """Главная страница"""
@@ -19,14 +21,21 @@ def category(request, category_id):
     return render(request, 'marketplaces/category.html', context)
 
 def products(request):
-    """Выводит страницу со всеми продуктами"""
+    """Выводит страницу со всеми товарами"""
     products = Product.objects.order_by('name')
     context = {'products': products}
     return render(request, 'marketplaces/products.html', context)
 
+# def product(request, product_id):
+#     """Выводит страницу со всеми товарами по категории"""
+#     product = Product.objects.get(id=product_id)
+#     #products = category.product_set.order_by('-date_added')
+#     context = {'product': product}
+#     return render(request, 'marketplaces/product.html', context)
+
 def product(request, product_id):
-    """Выводит страницу со всеми товарами по категории"""
-    product = Product.objects.get(id=product_id)
-    #products = category.product_set.order_by('-date_added')
-    context = {'product': product}
+    """Выводит страницу товара"""
+    product = get_object_or_404(Product, id=product_id)
+    cart_product_form = CartAddProductForm()
+    context = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'marketplaces/product.html', context)
