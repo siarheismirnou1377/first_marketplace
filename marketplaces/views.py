@@ -26,13 +26,6 @@ def products(request):
     context = {'products': products}
     return render(request, 'marketplaces/products.html', context)
 
-# def product(request, product_id):
-#     """Выводит страницу со всеми товарами по категории"""
-#     product = Product.objects.get(id=product_id)
-#     #products = category.product_set.order_by('-date_added')
-#     context = {'product': product}
-#     return render(request, 'marketplaces/product.html', context)
-
 def product(request, product_id):
     """Выводит страницу товара"""
     product = get_object_or_404(Product, id=product_id)
