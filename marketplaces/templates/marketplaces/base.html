@@ -2,10 +2,22 @@
     <a href= "{% url 'marketplaces:index' %}">Marketplace</a>
     <a href= "{% url 'marketplaces:categories' %}">All categories</a>
     <a href= "{% url 'marketplaces:products' %}">All products</a>
-    <a href= "{% url 'marketplaces:cart_detail' %}">My Cart</a>
     {% if user.is_authenticated %}
         Hello, {{ user.username }}.
-        <a href="{% url 'users:logout' %}">Log out</a>
+        <a class="cart">
+            {% with total_items=cart|length %}
+                {% if cart|length > 0 %}
+                    Your cart:
+                    <a href="{% url "cart:cart_detail" %}">
+                        {{ total_items }} item{{ total_items|pluralize }},
+                        ${{ cart.get_total_price }}
+                    </a>
+                    <a href="{% url 'users:logout' %}">Log out</a>
+                {% else %}
+                    Your cart is empty.
+                {% endif %}
+            {% endwith %}
+        </a>
     {% else %}
         <a href="{% url 'users:login' %}">Log in</a> -
         <a href="{% url 'users:register' %}">Register</a>
