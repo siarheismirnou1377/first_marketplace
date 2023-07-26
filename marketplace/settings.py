@@ -133,3 +133,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # My settings
 
 CART_SESSION_ID = 'cart'
+LOGIN_URL = '/users/login/'
