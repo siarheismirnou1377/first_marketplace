@@ -34,4 +34,4 @@ def cart_detail(request):
     """Выводит страницу корзины"""
     cart = Cart(request)
     context = {'cart': cart}
-    return render(request, 'cart/detail.html', context)
+    return render(request, 'cart/cart.html', context)
