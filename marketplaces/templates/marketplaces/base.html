@@ -14,7 +14,7 @@
                     </a>
                     <a href="{% url 'users:logout' %}">Log out</a>
                 {% else %}
-                    Your cart is empty.
+                <a href="{% url "cart:cart_detail" %}">Your cart is empty.</a>
                     <a href="{% url 'users:logout' %}">Log out</a>
                 {% endif %}
             {% endwith %}
