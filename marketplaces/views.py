@@ -3,6 +3,8 @@ from .models import Category, Product
 from cart.forms import CartAddProductForm
 from django.shortcuts import render, redirect
 from .forms import CategoryForm, ProductForm
+from django.contrib.auth.decorators import login_required
+
 
 
 def index(request):
@@ -35,6 +37,7 @@ def product(request, product_id):
     context = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'marketplaces/product.html', context)
 
+@login_required
 def new_category(request):
     """Определяет новую категорию"""
     if request.method != 'POST':
@@ -50,9 +53,9 @@ def new_category(request):
     context = {'form': form}
     return render(request, 'marketplaces/new_category.html', context)
 
+@login_required
 def new_product(request):
     """Добавляет новый товар"""
-    # products = Category.objects.get(id=products_id)
     if request.method != 'POST':
         # Данные не отправились, создается пустая форма.
         form = ProductForm()
