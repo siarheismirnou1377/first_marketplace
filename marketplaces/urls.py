@@ -16,5 +16,7 @@ urlpatterns = [
     path('<int:product_id>/', views.product, name='product'),
     # Страница корзины
     path('cart/', views_cart.cart_detail, name='cart_detail'),
+    #Страница добавления категории для админа
+    path('new_category/', views.new_category, name='new_category'),
 ]
  
