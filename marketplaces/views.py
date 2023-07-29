@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from .models import Category, Product
 from cart.forms import CartAddProductForm
 from django.shortcuts import render, redirect
-from .forms import CategoryForm
+from .forms import CategoryForm, ProductForm
 
 
 def index(request):
@@ -49,3 +49,19 @@ def new_category(request):
     # Вывести пустую или недействительную форму.
     context = {'form': form}
     return render(request, 'marketplaces/new_category.html', context)
+
+def new_product(request):
+    """Добавляет новый товар"""
+    # products = Category.objects.get(id=products_id)
+    if request.method != 'POST':
+        # Данные не отправились, создается пустая форма.
+        form = ProductForm()
+    else:
+        # Отправлены данные POST; обработать данные.
+        form = ProductForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('marketplaces:products')
+    # Вывести пустую или недействительную форму.
+    context = {'form': form}
+    return render(request, 'marketplaces/new_product.html', context)
