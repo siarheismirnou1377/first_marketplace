@@ -1,7 +1,6 @@
 {% extends 'marketplaces/base.html' %}
 
 {% block content %}
-
     <ul>
         {% for product in products %}
             <li> 
@@ -11,5 +10,6 @@
             <li>There are no product.</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'marketplaces:new_product' %}">Add new product</a>
 
 {% endblock content %}
