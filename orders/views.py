@@ -5,7 +5,7 @@ from cart.cart import Cart
 
 
 def order_create(request):
-    """Создаёт заказ и очищает корзину"""
+    """Выводит созданный заказ и очищает корзину"""
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
@@ -13,6 +13,7 @@ def order_create(request):
             order = form.save()
             for item in cart:
                 OrderItem.objects.create(order=order,
+                                         owner=request.user,
                                          product=item['product'],
                                          price=item['price'],
                                          quantity=item['quantity'])
