@@ -5,7 +5,6 @@ from .models import Order, OrderItem
 class OrderItemInline(admin.TabularInline):
     """Класс,отображаения заказанных продуктов"""
     model = OrderItem
-    raw_id_fields = ['product']
 
 
 class OrderAdmin(admin.ModelAdmin):

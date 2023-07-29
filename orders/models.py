@@ -13,7 +13,6 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-    #owner = User.username
     class Meta:
         verbose_name = 'Order'
         verbose_name_plural = 'Orders'
