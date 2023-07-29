@@ -1,15 +1,27 @@
 {% extends 'marketplaces/base.html' %}
 
 {% block content %}
-
-    <ul>
-        {% for product in products %}
-            <li> 
-                <a href="{% url 'marketplaces:product' product.id %}">{{ product.name }}</a>
-            </li>
-        {% empty %}
-            <li>There are no product.</li>
-        {% endfor %}
-    </ul>
+    {% if user.is_superuser %}
+        <ul>
+            {% for product in products %}
+                <li> 
+                    <a href="{% url 'marketplaces:product' product.id %}">{{ product.name }}</a>
+                </li>
+            {% empty %}
+                <li>There are no product.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'marketplaces:new_product' %}">Add new product</a>
+    {% else %}
+        <ul>
+            {% for product in products %}
+                <li> 
+                    <a href="{% url 'marketplaces:product' product.id %}">{{ product.name }}</a>
+                </li>
+            {% empty %}
+                <li>There are no product.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 
 {% endblock content %}

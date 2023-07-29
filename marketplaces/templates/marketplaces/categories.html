@@ -1,15 +1,26 @@
 {% extends 'marketplaces/base.html' %}
 
 {% block content %}
-
-    <ul>
-        {% for category in categories %}
-            <li>
-                <a href="{% url 'marketplaces:category' category.id %}">{{ category }}</a>
-            </li>
-        {% empty %}
-            <li>There are no category.</li>
-        {% endfor %}
-    </ul>
-
+    {% if user.is_superuser %}
+        <ul>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'marketplaces:category' category.id %}">{{ category }}</a>
+                </li>
+            {% empty %}
+                <li>There are no category.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'marketplaces:new_category' %}">Add a new category:</a>
+    {% else %}
+        <ul>
+            {% for category in categories %}
+                <li>
+                    <a href="{% url 'marketplaces:category' category.id %}">{{ category }}</a>
+                </li>
+            {% empty %}
+                <li>There are no category.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock content %}

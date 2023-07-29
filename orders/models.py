@@ -1,6 +1,6 @@
 from django.db import models
 from marketplaces.models import Product
-
+from django.contrib.auth.models import User
 
 class Order(models.Model):
     """Класс заказа, собирает данные пользователя и создает заказ"""
@@ -13,7 +13,6 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     paid = models.BooleanField(default=False)
-
     class Meta:
         verbose_name = 'Order'
         verbose_name_plural = 'Orders'
@@ -27,7 +26,8 @@ class Order(models.Model):
 
 class OrderItem(models.Model):
     """Класс который хранит заказ, товар и информацию по товару"""
-    order = models.ForeignKey(Order, on_delete = models.PROTECT, related_name='items')
+    owner = models.ForeignKey(User, on_delete=models.PROTECT)
+    order = models.ForeignKey(Order, on_delete = models.CASCADE, related_name='items')
     product = models.ForeignKey(Product, on_delete = models.PROTECT, related_name='order_items')
     price = models.DecimalField(max_digits=10, decimal_places=2)
     quantity = models.PositiveIntegerField(default=1)

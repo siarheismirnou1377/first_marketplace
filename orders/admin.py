@@ -5,12 +5,11 @@ from .models import Order, OrderItem
 class OrderItemInline(admin.TabularInline):
     """Класс,отображаения заказанных продуктов"""
     model = OrderItem
-    raw_id_fields = ['product']
 
 
 class OrderAdmin(admin.ModelAdmin):
     """Класс отображаения информации по заказу"""
-    list_display = ['id', 'first_name', 'last_name', 'email',
+    list_display = ['id','first_name', 'last_name', 'email',
                     'address', 'postal_code', 'city', 'paid',
                     'created', 'updated']
     list_filter = ['paid', 'created', 'updated']

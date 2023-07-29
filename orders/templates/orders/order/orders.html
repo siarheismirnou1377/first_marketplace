@@ -1,0 +1,18 @@
+{% extends 'marketplaces/base.html' %}
+
+{% block content %}
+
+    <ul>
+        {% for order in orders %}
+            <p> 
+                {{ order.order }},
+                {{ order.product }},
+                {{ order.price }},
+                {{ order.quantity }}
+            </p>
+        {% empty %}
+            <li>There are no order.</li>
+        {% endfor %}
+    </ul>
+
+{% endblock content %}
