@@ -2,6 +2,7 @@
     <a href= "{% url 'marketplaces:index' %}">Marketplace</a>
     <a href= "{% url 'marketplaces:categories' %}">All categories</a>
     <a href= "{% url 'marketplaces:products' %}">All products</a>
+    <a href= "{% url 'order:orders_user' %}">My orders</a>
     {% if user.is_authenticated %}
         Hello, {{ user.username }}.
         <a class="cart">
